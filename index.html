@@ -4,7 +4,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>北陸・秋日旅行</title>
+<meta name="theme-color" content="#EFEBDF">
+<title>北陸・秋日旅行｜8天7夜</title>
 
 <style>
 :root {
@@ -14,6 +15,7 @@
   --clay: #C37C61;
   --ink: #393A3A;
   --muted: #77786F;
+  --line: #ded8ca;
 }
 
 * { box-sizing: border-box; }
@@ -22,413 +24,938 @@ body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  font-family: Arial, "Noto Sans TC", sans-serif;
-  line-height: 1.7;
+  font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC", sans-serif;
+  line-height: 1.65;
 }
 
-.container {
+.wrap {
+  max-width: 1080px;
   width: 92%;
-  max-width: 1000px;
   margin: auto;
 }
 
-header {
-  padding: 35px 25px;
-  margin: 20px auto;
-  border-radius: 22px;
+.hero {
+  margin: 18px auto 24px;
+  border-radius: 24px;
+  overflow: hidden;
+  min-height: 260px;
+  display: flex;
+  align-items: end;
+  padding: 28px;
   color: white;
   background:
-    linear-gradient(90deg, #393A3ADD, #393A3A55),
+    linear-gradient(0deg,#20251fdd,#20251f22),
     url("https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=1200")
     center/cover;
 }
 
-header h1 {
-  font-size: 38px;
-  margin-bottom: 5px;
+.eyebrow {
+  letter-spacing: .16em;
+  font-size: 12px;
 }
 
-header p { color: #eee; }
+.hero h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(32px,7vw,54px);
+  margin: 8px 0;
+}
+
+.hero p {
+  margin: 4px 0;
+  color: #f5f1e9;
+}
 
 h2 {
-  font-family: Georgia, serif;
+  font-family: Georgia, "Noto Serif TC", serif;
+  margin: 22px 0 8px;
 }
 
-.day-buttons {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+.muted {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.nav, .days {
+  display: flex;
   gap: 8px;
-  margin: 20px 0;
+  overflow-x: auto;
+  padding: 4px 0 10px;
+}
+
+.nav button, .days button {
+  white-space: nowrap;
+  border: 1px solid var(--line);
+  background: var(--cream);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-size: 14px;
 }
 
 button {
-  padding: 12px 8px;
-  border: 1px solid #ddd7c9;
-  border-radius: 12px;
-  background: var(--cream);
-  color: var(--ink);
-  font-size: 14px;
+  font: inherit;
   cursor: pointer;
 }
 
-button.active {
+.nav button.active, .days button.active {
   background: var(--sage);
   color: white;
+  border-color: var(--sage);
 }
 
-.tabs {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin: 20px 0;
-}
-
-.tabs button {
-  border-radius: 30px;
-  padding: 10px 18px;
-}
-
-.card {
+.panel {
   background: var(--cream);
-  padding: 20px;
-  margin-bottom: 15px;
+  border: 1px solid var(--line);
   border-radius: 18px;
-  border: 1px solid #ddd7c9;
+  padding: 18px;
+  margin: 14px 0;
+}
+
+.dayhead {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: end;
+  flex-wrap: wrap;
+}
+
+.pill {
+  display: inline-block;
+  background: #e5e9df;
+  color: #53664f;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 12px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  gap: 14px;
+}
+
+.place {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.place img, .hotel img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+  background: #e6e0d3;
+}
+
+.placebody { padding: 13px; }
+
+.place h3, .hotel h3 {
+  margin: 2px 0 6px;
+  font-size: 17px;
+}
+
+.place p, .hotel p {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 5px 0 10px;
+}
+
+.links {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 13px;
+}
+
+.links a {
+  color: #477d85;
+  text-decoration: none;
+  font-weight: 600;
 }
 
 .event {
-  padding: 15px 0;
-  border-bottom: 1px solid #ddd7c9;
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
 }
 
-.event:last-child { border: none; }
+.event:last-child { border: 0; }
 
 .time {
   color: var(--sage);
-  font-weight: bold;
-}
-
-a {
-  color: #477D85;
-  text-decoration: none;
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .route {
   background: white;
-  padding: 15px;
+  border-radius: 14px;
+  padding: 14px;
+  margin: 12px 0;
+  border: 1px solid var(--line);
+}
+
+.route h3 {
+  font-size: 16px;
+  margin: 0 0 5px;
+}
+
+.pros { color: #536e52; }
+.cons { color: #a45e48; }
+
+.weatherbig { font-size: 40px; }
+
+.weathergrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(130px,1fr));
+  gap: 10px;
+}
+
+.weathercell {
+  background: white;
   border-radius: 12px;
+  padding: 12px;
+}
+
+.weathercell b {
+  display: block;
+  font-size: 20px;
+}
+
+.hotel {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 15px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 12px;
   margin: 12px 0;
 }
 
-.good { color: var(--sage); }
-.bad { color: #B36F55; }
+.hotel img {
+  height: 150px;
+  border-radius: 11px;
+}
 
-.weather-icon {
-  font-size: 45px;
+.notice {
+  background: #f5e8df;
+  border-left: 4px solid var(--clay);
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 14px;
 }
 
 footer {
   text-align: center;
-  padding: 30px;
   color: var(--muted);
+  font-size: 12px;
+  padding: 35px 10px;
 }
 
-@media (min-width: 700px) {
-  .day-buttons {
-    grid-template-columns: repeat(8, 1fr);
-  }
+@media(max-width:560px) {
+  .hotel { grid-template-columns: 1fr; }
+  .hotel img { height: 180px; }
+  .hero { min-height: 220px; padding: 20px; }
+  .panel { padding: 14px; }
+  .event { grid-template-columns: 60px 1fr; }
 }
 </style>
 </head>
 
 <body>
+<div class="wrap">
 
-<div class="container">
-
-<header>
-  <p>TRAVEL JOURNAL · JAPAN</p>
-  <h1>北陸・秋日旅行</h1>
-  <p>沿著鐵道，走進山海與秋色。</p>
-  <p>2026.11.05 — 11.12 ｜ 8 DAYS 7 NIGHTS</p>
+<header class="hero">
+  <div>
+    <div class="eyebrow">TRAVEL JOURNAL · JAPAN</div>
+    <h1>北陸・秋日旅行</h1>
+    <p>2026.11.05 — 11.12 ｜ 8 DAYS · 7 NIGHTS</p>
+    <p>金澤・白川鄉・富山・高岡・宇奈月</p>
+  </div>
 </header>
 
-<h2>旅程安排</h2>
-<p>選擇日期，查看每日行程、天氣與交通。</p>
+<section class="panel">
+  <div class="dayhead">
+    <div>
+      <span class="pill">MY HOKURIKU TRIP</span>
+      <h2>選擇旅行日期</h2>
+      <div class="muted">點選日期，查看當日行程、天氣與交通方案。</div>
+    </div>
+  </div>
 
-<div class="day-buttons" id="dayButtons"></div>
+  <div class="days" id="days"></div>
 
-<h2 id="dayTitle"></h2>
-<p id="dayCity"></p>
+  <div class="nav" id="tabs">
+    <button class="active" data-tab="itinerary">每日行程</button>
+    <button data-tab="weather">天氣資訊</button>
+    <button data-tab="transport">交通方式</button>
+  </div>
 
-<div class="tabs">
-  <button onclick="showTab('itinerary')" id="tab-itinerary" class="active">每日行程</button>
-  <button onclick="showTab('weather')" id="tab-weather">天氣資訊</button>
-  <button onclick="showTab('transport')" id="tab-transport">交通比較</button>
-</div>
+  <div class="dayhead">
+    <div>
+      <h2 id="dayTitle"></h2>
+      <div class="muted" id="daySub"></div>
+    </div>
+  </div>
 
-<div id="content"></div>
+  <div id="content"></div>
+</section>
 
-</div>
+<section class="panel">
+  <h2>住宿資訊</h2>
+  <p class="muted">依目前提供的住宿名稱整理；Toyoko Inn 分店尚未確認，請以訂房確認信為準。</p>
+  <div id="hotels"></div>
+</section>
 
 <footer>
-  HOKURIKU TRAVEL JOURNAL · 2026
+  HOKURIKU TRAVEL JOURNAL · 2026<br>
+  天氣資料：Open-Meteo｜景點圖片為網路圖片參考，實際景況依現場為準。
 </footer>
 
+</div>
+
 <script>
-// 每日行程資料
+
+// ===================================
+// 1. 每日行程資料
+// ===================================
+
 const days = [
+
 {
-date:"11/5", city:"金澤",
-title:"抵達金澤・金澤市區",
-lat:36.5613, lon:136.6562,
+date:"11/5（四）",
+city:"小松・金澤",
+place:"金澤",
+lat:36.5613,
+lon:136.6562,
 events:[
-["12:05","抵達小松機場","小松機場"],
-["14:30","Smile Hotel 寄放行李","Smile Hotel Kanazawa"],
-["15:00","近江町市場","近江町市場"],
-["16:30","東茶屋街","東茶屋街"],
-["18:00","主計町茶屋街","主計町茶屋街"]
+["12:05","抵達小松機場","小松機場","抵達後前往金澤"],
+["14:30","Smile Hotel 寄放行李／入住","Smile Hotel Kanazawa Nishiguchi Ekimae","先辦理寄放行李"],
+["15:00","近江町市場","近江町市場","市場散策約60–75分鐘"],
+["16:30","東茶屋街","東茶屋街","老街散策約1.5小時"],
+["18:00","主計町茶屋街","主計町茶屋街","散步約30分鐘"],
+["19:00","晚餐","金澤市區","依當天體力安排"]
 ],
 routes:[
-["小松機場 → 金澤站","機場利木津巴士","約40～50分鐘","直達、行李方便","需要配合班次"],
-["小松機場 → 金澤站","計程車","約35～50分鐘","點對點、彈性高","費用較高"]
+["小松機場 → 金澤站","機場利木津巴士","約40–50分鐘","直達車站、帶行李較方便","需配合班次；車程受路況影響"],
+["小松機場 → 金澤飯店","計程車","約40–55分鐘","點對點、不必轉乘","費用明顯較高"]
 ]
 },
+
 {
-date:"11/6", city:"金澤",
-title:"金澤市區・庭園與美術館",
-lat:36.5613, lon:136.6562,
+date:"11/6（五）",
+city:"金澤",
+place:"金澤",
+lat:36.5613,
+lon:136.6562,
 events:[
-["09:00","兼六園","兼六園"],
-["11:00","金澤城公園","金澤城公園"],
-["12:30","21世紀美術館","金澤21世紀美術館"],
-["15:30","長町武家屋敷","長町武家屋敷跡"],
-["17:00","香林坊・片町","香林坊"]
+["09:00","兼六園","兼六園","庭園散策約1.5–2小時"],
+["11:00","金澤城公園","金澤城公園","散策約1–1.5小時"],
+["12:30","午餐","金澤市區","約1小時"],
+["13:30","21世紀美術館","金澤21世紀美術館","參觀約1.5–2小時"],
+["15:30","長町武家屋敷跡","長町武家屋敷跡","散策約1–1.5小時"],
+["17:00","香林坊／片町","香林坊","購物、晚餐"]
 ],
 routes:[
-["金澤站 → 兼六園","市區巴士","約15～25分鐘","省腳力","需要等候班次"],
-["金澤站 → 兼六園","計程車","約10～15分鐘","方便快速","費用較高"]
+["金澤站 → 兼六園","金澤周遊巴士／路線巴士","約15–25分鐘","少走路、班次選擇多","需看即時班次及下車站"],
+["金澤站 → 兼六園","計程車","約10–15分鐘","省時、直達附近","費用較高；市區可能塞車"],
+["市區景點之間","步行","依景點約5–20分鐘","沿途可逛街、免等車","景點間步行量較大"]
 ]
 },
+
 {
-date:"11/7", city:"白川鄉・五箇山",
-title:"白川鄉・五箇山",
-lat:36.2575, lon:136.9060,
+date:"11/7（六）",
+city:"白川鄉・五箇山",
+place:"白川鄉",
+lat:36.2575,
+lon:136.9067,
 events:[
-["08:00","金澤集合","金澤站"],
-["10:00","白川鄉合掌村","白川鄉"],
-["13:00","五箇山相倉合掌村","五箇山相倉"],
-["17:00","返回金澤","金澤站"],
-["晚上","兼六園夜間散策","兼六園"]
+["07:50","金澤站西口集合／搭乘團體巴士","金澤站西口","依旅行社集合通知"],
+["09:15","道之驛白川鄉","道之驛白川鄉","短暫停留"],
+["09:40","白川鄉合掌村","白川鄉","自由漫遊、午餐"],
+["13:15","五箇山相倉合掌集落","五箇山相倉合掌集落","散策約1小時"],
+["15:45","回程抵達金澤","金澤站","行程結束"],
+["18:00","兼六園夜間開放","兼六園","開放時間以官方公告為準"]
 ],
 routes:[
-["金澤 → 白川鄉","預約觀光巴士","約75～90分鐘","不用自行轉乘","需提前預約"],
-["金澤 → 白川鄉","高速巴士","約75～90分鐘","可自行安排","需確認班次及預約"]
+["金澤 → 白川鄉 → 五箇山 → 金澤","預約觀光團體巴士","依旅行社行程","景點間接駁一次處理、不用自己轉乘","需事先預約；時間彈性較低"],
+["金澤 → 白川鄉","高速巴士","約75–90分鐘","可自行安排白川鄉停留","白川鄉到五箇山仍需另安排交通"]
 ]
 },
+
 {
-date:"11/8", city:"富山",
-title:"金澤 → 富山",
-lat:36.6953, lon:137.2113,
+date:"11/8（日）",
+city:"金澤 → 富山",
+place:"富山",
+lat:36.6953,
+lon:137.2113,
 events:[
-["09:00","金澤站出發","金澤站"],
-["10:00","抵達富山","富山站"],
-["11:00","富山玻璃美術館","富山市玻璃美術館"],
-["14:00","富山城址公園","富山城址公園"],
-["16:00","環水公園","富岩運河環水公園"]
+["09:00","金澤站 → 富山站","金澤站","北陸新幹線約25分鐘"],
+["10:00","Toyoko Inn 寄放行李","Toyoko Inn 富山站","步行前往飯店"],
+["10:30","富山市玻璃美術館","富山市玻璃美術館","參觀約1.5–2小時"],
+["13:30","富山城址公園","富山城址公園","散策約45–60分鐘"],
+["15:00","市區咖啡／逛街","富山站周邊","自由安排"],
+["18:00","富岩運河環水公園","富岩運河環水公園","傍晚散步"]
 ],
 routes:[
-["金澤 → 富山","北陸新幹線","約20～25分鐘","快速、舒適","票價較高"],
-["金澤 → 富山","高速巴士","約60～90分鐘","可能較省交通費","車程較長、受路況影響"]
+["金澤 → 富山","北陸新幹線","約20–25分鐘","最快、班次選擇較多","票價通常較高"],
+["金澤 → 富山","高速巴士","約60–90分鐘","有機會較省交通費","較慢、受路況影響"]
 ]
 },
+
 {
-date:"11/9", city:"高岡・雨晴",
-title:"高岡・瑞龍寺・雨晴海岸",
-lat:36.7541, lon:137.0257,
+date:"11/9（一）",
+city:"高岡・雨晴",
+place:"高岡",
+lat:36.7541,
+lon:137.0257,
 events:[
-["09:00","富山 → 高岡","高岡站"],
-["09:30","瑞龍寺","瑞龍寺"],
-["11:00","高岡大佛","高岡大佛"],
-["12:00","金屋町","金屋町"],
-["14:00","高岡 → 雨晴","雨晴站"],
-["14:30","雨晴海岸","雨晴海岸"]
+["09:00","富山 → 高岡","高岡站","愛之風富山鐵道"],
+["09:30","瑞龍寺","瑞龍寺","參觀約1–1.5小時"],
+["11:00","高岡大佛","高岡大佛","停留約30–40分鐘"],
+["12:00","金屋町","金屋町","散步約1小時"],
+["14:00","高岡 → 雨晴","雨晴站","JR冰見線"],
+["14:30","雨晴海岸","雨晴海岸","海岸散策約2–2.5小時"],
+["17:00","雨晴 → 富山","雨晴站","回高岡轉乘"]
 ],
 routes:[
-["富山 → 高岡","愛之風富山鐵道","約20分鐘","直達、方便","需確認班次"],
-["富山 → 高岡","計程車","約35～50分鐘","彈性較高","費用較高"],
-["高岡 → 雨晴","JR冰見線","約25分鐘","可直接抵達","班次較少"],
-["高岡 → 雨晴","計程車","約20～30分鐘","時間彈性","費用較高"]
+["富山 → 高岡","愛之風富山鐵道","約20分鐘","直接、價格通常較經濟","需確認班次"],
+["富山 → 高岡","計程車","約35–50分鐘","點對點方便","費用高"],
+["高岡 → 雨晴","JR冰見線","約20–25分鐘","可搭地方鐵道欣賞沿線","班次較少，須先查回程"],
+["高岡 → 雨晴","計程車","約20–30分鐘","時間彈性、少等車","費用較高"]
 ]
 },
+
 {
-date:"11/10", city:"宇奈月",
-title:"黑部峽谷・宇奈月溫泉",
-lat:36.8155, lon:137.5835,
+date:"11/10（二）",
+city:"黑部峽谷・宇奈月溫泉",
+place:"宇奈月",
+lat:36.8155,
+lon:137.5835,
 events:[
-["08:30","富山 → 宇奈月溫泉","電鐵富山站"],
-["09:00","黑部峽谷鐵道","黑部峽谷鐵道宇奈月站"],
-["10:18","抵達欅平","欅平站"],
-["12:00","午餐","欅平站"],
-["14:37","欅平返回宇奈月","欅平站"],
-["16:00","Yamanohana 入住","Yamanohana"]
+["08:30","富山 → 宇奈月溫泉","電鐵富山站","富山地方鐵道，需預留約1.5–2小時"],
+["09:00","黑部峽谷鐵道宇奈月站","黑部峽谷鐵道宇奈月站","原行程時間與前段交通衝突，需調整"],
+["10:18","欅平站","欅平站","依當日列車班次"],
+["10:30","欅平周邊散策","欅平","部分步道可能受修復工程限制"],
+["14:37","欅平 → 宇奈月","欅平站","列車時間請再次核對"],
+["16:00","YAMANOHA 入住","宇奈月溫泉 YAMANOHA","泡湯、休息"]
 ],
 routes:[
-["富山 → 宇奈月","富山地方鐵道","約1.5～2小時","可搭乘鐵道","09:00小火車無法銜接08:30出發"],
-["富山 → 宇奈月","計程車／包車","約60～90分鐘","時間彈性較高","費用較高"]
+["富山 → 宇奈月溫泉","富山地方鐵道","約1.5–2小時","大眾運輸直達宇奈月溫泉站","原定08:30出發無法銜接09:00小火車"],
+["富山 → 宇奈月溫泉","計程車／包車","約60–90分鐘（依路況）","時間較彈性、可減少轉乘","費用較高，仍須核對列車報到時間"],
+["宇奈月溫泉站 → 黑部峽谷鐵道","步行","約5–10分鐘","距離近、簡單","需留意車站位置與報到時間"]
 ]
 },
+
 {
-date:"11/11", city:"富山",
-title:"宇奈月溫泉 → 富山",
-lat:36.6953, lon:137.2113,
+date:"11/11（三）",
+city:"宇奈月 → 富山",
+place:"富山",
+lat:36.6953,
+lon:137.2113,
 events:[
-["07:30","Yamanohana 早餐","Yamanohana"],
-["08:30","早晨泡湯","Yamanohana"],
-["10:00","宇奈月溫泉散策","宇奈月溫泉"],
-["12:00","宇奈月 → 富山","宇奈月溫泉站"],
-["15:00","MAROOT 購物","MAROOT"]
+["07:30","YAMANOHA 早餐","YAMANOHA","早餐約1小時"],
+["08:30","早晨泡湯","YAMANOHA","約45–60分鐘"],
+["10:00","退房／宇奈月溫泉散策","宇奈月溫泉","依退房時間調整"],
+["12:00","宇奈月 → 富山","宇奈月溫泉站","富山地方鐵道"],
+["14:00","午餐","富山站周邊","約1小時"],
+["15:00","MAROOT／富山站購物","MAROOT","購物約2–3小時"],
+["18:00","最後晚餐","富山站周邊","自由安排"]
 ],
 routes:[
-["宇奈月 → 富山","富山地方鐵道","約1.5～2小時","大眾運輸方便","需要配合班次"],
-["宇奈月 → 新黑部 → 富山","計程車＋新幹線","依班次而定","新幹線較快","需額外安排接駁"]
+["宇奈月溫泉 → 富山","富山地方鐵道","約1.5–2小時","不需自行開車","需配合班次"],
+["宇奈月 → 新黑部 → 富山","富山地方鐵道＋北陸新幹線","依轉乘約1小時上下","部分班次可能較快","轉乘及票價較複雜，需核對時刻"]
 ]
 },
+
 {
-date:"11/12", city:"金澤・小松",
-title:"富山 → 小松機場・返程",
-lat:36.5613, lon:136.6562,
+date:"11/12（四）",
+city:"富山 → 金澤 → 小松機場",
+place:"富山",
+lat:36.6953,
+lon:137.2113,
 events:[
-["07:30","富山 → 金澤","富山站"],
-["10:00","金澤 → 小松機場","金澤站西口"],
-["12:55","IT295 起飛","小松機場"]
+["06:30","Toyoko Inn 早餐","Toyoko Inn 富山站","依飯店早餐時間"],
+["07:30","富山 → 金澤","富山站","北陸新幹線約20–25分鐘"],
+["10:00","金澤站 → 小松機場","金澤站西口","機場巴士約40–50分鐘，時間需配合航班"],
+["12:55","IT295 起飛","小松機場","建議預留充足報到時間"]
 ],
 routes:[
-["富山 → 小松機場","北陸新幹線＋機場巴士","約1小時10～30分鐘","轉乘清楚","需預留候車時間"],
-["富山 → 小松機場","鐵道＋機場巴士","約1.5小時以上","可能較省交通費","移動時間較長"]
+["富山 → 小松機場","北陸新幹線＋金澤站機場巴士","約1.5小時以上（含候車）","轉乘清楚、鐵道準點性較佳","需預留轉乘緩衝"],
+["富山 → 小松機場","鐵道轉乘至小松站＋巴士／計程車","依班次約1.5–2小時","可直接靠近小松地區","轉乘較多，行李移動較麻煩"]
 ]
 }
+
 ];
 
-// Google 地圖連結
-function mapLink(place) {
+// ===================================
+// 2. 景點照片與介紹
+// ===================================
+
+const attractions = {
+
+"近江町市場":[
+"https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=900",
+"金澤代表性市場，可安排熟食與在地食材巡禮。"
+],
+
+"東茶屋街":[
+"https://res-3.cloudinary.com/jnto/image/upload/w_2064%2Ch_1300%2Cc_fill%2Cf_auto%2Cfl_lossy%2Cq_auto/v1514195699/ishikawa/Ishikawa004_4",
+"保存傳統木造茶屋街景，適合散步、咖啡與金箔體驗。"
+],
+
+"主計町茶屋街":[
+"https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=900",
+"沿淺野川的老街巷弄，傍晚燈光很有氣氛。"
+],
+
+"兼六園":[
+"https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=900",
+"日本三名園之一，庭園景觀隨季節變化。"
+],
+
+"金澤城公園":[
+"https://images.unsplash.com/photo-1580137189272-c9379f8864fd?w=900",
+"金澤城跡與石川門周邊，適合搭配兼六園步行。"
+],
+
+"21世紀美術館":[
+"https://images.unsplash.com/photo-1577083552431-6e5fd01aa342?w=900",
+"以當代藝術展覽與建築空間聞名。"
+],
+
+"長町武家屋敷跡":[
+"https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=900",
+"土牆、石板路與武家宅邸街區，保留舊金澤風貌。"
+],
+
+"道之驛白川鄉":[
+"https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=900",
+"白川鄉入口附近的休憩點，適合短暫停留。"
+],
+
+"白川鄉":[
+"https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=900",
+"世界文化遺產合掌造聚落，建議登展望台欣賞村落全景。"
+],
+
+"五箇山相倉合掌集落":[
+"https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=900",
+"規模較小、氛圍寧靜的合掌造聚落。"
+],
+
+"富山市玻璃美術館":[
+"https://images.unsplash.com/photo-1577083552431-6e5fd01aa342?w=900",
+"由隈研吾參與設計的複合文化設施。"
+],
+
+"富山城址公園":[
+"https://images.unsplash.com/photo-1580137189272-c9379f8864fd?w=900",
+"市中心的城址公園，可順遊周邊街區。"
+],
+
+"富岩運河環水公園":[
+"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=900",
+"運河與草地景觀，適合傍晚散步。"
+],
+
+"瑞龍寺":[
+"https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=900",
+"高岡代表性國寶寺院，以對稱伽藍配置聞名。"
+],
+
+"高岡大佛":[
+"https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=900",
+"高岡市區代表性佛像景點。"
+],
+
+"金屋町":[
+"https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=900",
+"傳統千本格子街屋與鑄物文化街區。"
+],
+
+"雨晴海岸":[
+"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=900",
+"天氣晴朗時可遠眺立山連峰與海岸景色。"
+],
+
+"黑部峽谷鐵道宇奈月站":[
+"https://prtimes.jp/i/33479/1/resize/d33479-1-500432-0.jpg",
+"黑部峽谷觀光小火車起點，搭乘時間及運行區間請以官方公告為準。"
+],
+
+"欅平站":[
+"https://www.bahnbilder.de/1200/unazuki-janpan-04082024-die-ed-1378980.jpg",
+"黑部峽谷鐵道終點站之一，步道開放狀況需留意官方公告。"
+],
+
+"欅平":[
+"https://www.bahnbilder.de/1200/unazuki-janpan-04082024-die-ed-1378980.jpg",
+"峽谷景觀區，地震後部分設施可能有進出限制。"
+],
+
+"宇奈月溫泉":[
+"https://images.unsplash.com/photo-1540541338287-41700207dee6?w=900",
+"黑部川沿岸溫泉街，適合入住旅館休息泡湯。"
+],
+
+"MAROOT":[
+"https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?w=900",
+"富山站旁購物與餐飲設施，適合返程前採買。"
+]
+
+};
+
+// ===================================
+// 3. Google Maps
+// ===================================
+
+function maps(q) {
   return "https://www.google.com/maps/search/?api=1&query="
-    + encodeURIComponent(place + " 日本");
+    + encodeURIComponent(q + " 日本");
 }
 
-// 建立每日按鈕
-function createButtons() {
-  const box = document.getElementById("dayButtons");
-  box.innerHTML = "";
+// ===================================
+// 4. 每日按鈕與頁籤
+// ===================================
 
-  days.forEach((day, i) => {
-    const btn = document.createElement("button");
-    btn.innerHTML = "DAY " + (i+1) + "<br>" + day.date;
-    btn.onclick = () => selectDay(i);
-    if (i === 0) btn.classList.add("active");
-    box.appendChild(btn);
+function renderDays() {
+
+  document.getElementById("days").innerHTML =
+    days.map((d,i) => `
+      <button class="${i===0?'active':''}" data-day="${i}">
+        DAY ${i+1}<br>${d.date.slice(0,5)}
+      </button>
+    `).join("");
+
+  document.querySelectorAll("[data-day]").forEach(b => {
+    b.onclick = () => selectDay(+b.dataset.day);
   });
 }
 
-// 選擇日期
-let currentDay = 0;
-let currentTab = "itinerary";
+let current = 0;
+let tab = "itinerary";
 
-function selectDay(index) {
-  currentDay = index;
-  createButtons();
+function selectDay(i) {
+  current = i;
 
-  document.querySelectorAll(".day-buttons button")
-    .forEach((btn, i) => {
-      btn.classList.toggle("active", i === index);
+  document.querySelectorAll("[data-day]").forEach(b => {
+    b.classList.toggle("active", +b.dataset.day === i);
+  });
+
+  render();
+}
+
+document.querySelectorAll("[data-tab]").forEach(b => {
+  b.onclick = () => {
+    tab = b.dataset.tab;
+
+    document.querySelectorAll("[data-tab]").forEach(x => {
+      x.classList.toggle("active", x === b);
     });
 
-  render();
-}
+    render();
+  };
+});
 
-// 切換資訊
-function showTab(tab) {
-  currentTab = tab;
+// ===================================
+// 5. 顯示每日內容
+// ===================================
 
-  document.querySelectorAll(".tabs button")
-    .forEach(btn => btn.classList.remove("active"));
-
-  document.getElementById("tab-" + tab)
-    .classList.add("active");
-
-  render();
-}
-
-// 顯示內容
 function render() {
-  const day = days[currentDay];
 
-  document.getElementById("dayTitle").innerText =
-    "DAY " + (currentDay+1) + "｜" + day.title;
+  const d = days[current];
 
-  document.getElementById("dayCity").innerText =
-    day.date + " ・ " + day.city;
+  document.getElementById("dayTitle").textContent =
+    `DAY ${current+1}｜${d.city}`;
 
-  const content = document.getElementById("content");
+  document.getElementById("daySub").textContent =
+    `${d.date} · ${d.place}`;
 
-  if (currentTab === "itinerary") {
-    content.innerHTML = `
-      <div class="card">
-        <h2>今日行程</h2>
-        ${day.events.map(e => `
+  const c = document.getElementById("content");
+
+  if (tab === "itinerary") {
+
+    c.innerHTML = `
+      <div class="panel">
+        ${d.events.map(e => `
           <div class="event">
-            <span class="time">${e[0]}</span>
-            <h3>${e[1]}</h3>
-            <a href="${mapLink(e[2])}" target="_blank">
-              📍 Google Maps 地圖導航 ↗
-            </a>
+            <div class="time">${e[0]}</div>
+            <div>
+              <b>${e[1]}</b>
+              <div class="muted">${e[3]}</div>
+              <div class="links">
+                <a target="_blank" href="${maps(e[2])}">
+                  📍 Google Maps 導航 ↗
+                </a>
+              </div>
+            </div>
           </div>
         `).join("")}
+      </div>
+
+      <h2>今日景點照片</h2>
+
+      <div class="grid">
+        ${d.events.filter(e => attractions[e[2]]).map(e => {
+          let a = attractions[e[2]];
+
+          return `
+            <article class="place">
+              <img loading="lazy"
+                src="${a[0]}"
+                alt="${e[2]}"
+                onerror="this.style.display='none'">
+
+              <div class="placebody">
+                <h3>${e[2]}</h3>
+                <p>${a[1]}</p>
+
+                <div class="links">
+                  <a target="_blank" href="${maps(e[2])}">
+                    Google Maps ↗
+                  </a>
+                </div>
+              </div>
+            </article>
+          `;
+        }).join("")}
       </div>
     `;
   }
 
-  if (currentTab === "transport") {
-    content.innerHTML = `
-      <div class="card">
-        <h2>交通方式比較</h2>
-        ${day.routes.map(r => `
-          <div class="route">
-            <h3>${r[0]}</h3>
-            <p><b>方案：</b>${r[1]}</p>
-            <p><b>車程：</b>${r[2]}</p>
-            <p class="good"><b>優點：</b>${r[3]}</p>
-            <p class="bad"><b>缺點：</b>${r[4]}</p>
-            <a href="${mapLink(r[0])}" target="_blank">
-              查看 Google Maps ↗
-            </a>
-          </div>
-        `).join("")}
-      </div>
+  if (tab === "transport") {
+
+    c.innerHTML = `
+      <h2>交通方式比較</h2>
+
+      ${d.routes.map((r,i) => `
+        <div class="route">
+          <span class="pill">方案 ${i+1}</span>
+
+          <h3>${r[0]}</h3>
+          <b>${r[1]}</b>
+
+          <p>預估車程：${r[2]}</p>
+          <p class="pros">優點：${r[3]}</p>
+          <p class="cons">注意事項：${r[4]}</p>
+
+          <a target="_blank" href="${maps(r[0])}">
+            查看路線地圖 ↗
+          </a>
+        </div>
+      `).join("")}
+
+      <p class="muted">
+        車程為規劃估算，請於出發前以鐵道／巴士官方時刻表確認實際班次與票價。
+      </p>
     `;
   }
 
-  if (currentTab === "weather") {
-    content.innerHTML = `
-      <div class="card">
-        <h2>每日天氣｜${day.city}</h2>
-        <div class="weather-icon">🌤️</div>
-        <p>預計旅行日期：2026 年 ${day.date}</p>
-        <p>天氣資料將透過 Open-Meteo API 取得。</p>
-        <p>目前先提供天氣資訊區塊，尚未載入即時預報。</p>
-        <a href="https://www.jma.go.jp/bosai/forecast/" target="_blank">
+  if (tab === "weather") {
+
+    c.innerHTML = `
+      <div class="panel">
+        <div class="weatherbig">🌦️</div>
+        <h3>${d.place}｜${d.date} 天氣預報</h3>
+
+        <div id="weatherResult" class="muted">
+          正在讀取 Open-Meteo 天氣資料…
+        </div>
+
+        <p class="muted">
+          天氣預報會隨時間更新；距離出發較遠時，預報可能尚未涵蓋該日期。
+        </p>
+      </div>
+    `;
+
+    loadWeather(d);
+  }
+}
+
+// ===================================
+// 6. 天氣 API
+// ===================================
+
+async function loadWeather(d) {
+
+  const box = document.getElementById("weatherResult");
+
+  try {
+
+    const url =
+      `https://api.open-meteo.com/v1/forecast?latitude=${d.lat}&longitude=${d.lon}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FTokyo&forecast_days=16`;
+
+    const res = await fetch(url);
+
+    if (!res.ok) {
+      throw new Error("天氣服務暫時無法連線");
+    }
+
+    const j = await res.json();
+
+    const month = d.date.slice(0,2);
+    const dayNum = d.date.match(/\d+\/(\d+)/)[1].padStart(2,"0");
+    const date = `2026-${month}-${dayNum}`;
+
+    const i = j.daily.time.indexOf(date);
+
+    if (i < 0) {
+      throw new Error(
+        "目前預報尚未涵蓋這一天，請接近出發日期再查看。"
+      );
+    }
+
+    const code = j.daily.weather_code[i];
+    const desc = weatherText(code);
+    const icon = weatherIcon(code);
+
+    box.innerHTML = `
+      <div class="weathergrid">
+
+        <div class="weathercell">
+          <span>${icon} 天氣</span>
+          <b>${desc}</b>
+        </div>
+
+        <div class="weathercell">
+          <span>最高溫</span>
+          <b>${Math.round(j.daily.temperature_2m_max[i])}°C</b>
+        </div>
+
+        <div class="weathercell">
+          <span>最低溫</span>
+          <b>${Math.round(j.daily.temperature_2m_min[i])}°C</b>
+        </div>
+
+        <div class="weathercell">
+          <span>降雨機率</span>
+          <b>${j.daily.precipitation_probability_max?.[i] ?? "—"}%</b>
+        </div>
+
+      </div>
+
+      <p class="muted">資料日期：${date}（日本時間）</p>
+    `;
+
+  } catch(e) {
+
+    box.textContent =
+      e.message + " 可先查看日本氣象廳預報。";
+
+    box.innerHTML += `
+      <p>
+        <a target="_blank"
+          href="https://www.jma.go.jp/bosai/forecast/">
           日本氣象廳天氣預報 ↗
         </a>
-      </div>
+      </p>
     `;
   }
 }
 
-// 啟動網站
-createButtons();
+function weatherText(c) {
+  if(c===0) return "晴朗";
+  if([1,2].includes(c)) return "晴時多雲";
+  if(c===3) return "陰天";
+  if([45,48].includes(c)) return "有霧";
+  if([51,53,55,56,57].includes(c)) return "毛毛雨";
+  if([61,63,65,66,67,80,81,82].includes(c)) return "有雨";
+  if([71,73,75,77,85,86].includes(c)) return "降雪";
+  if([95,96,99].includes(c)) return "雷雨";
+  return "天氣變化";
+}
+
+function weatherIcon(c) {
+  if(c===0) return "☀️";
+  if([1,2].includes(c)) return "🌤️";
+  if(c===3) return "☁️";
+  if([45,48].includes(c)) return "🌫️";
+  if([71,73,75,77,85,86].includes(c)) return "❄️";
+  if([95,96,99].includes(c)) return "⛈️";
+  if([51,53,55,56,57,61,63,65,66,67,80,81,82].includes(c)) return "🌧️";
+  return "🌥️";
+}
+
+// ===================================
+// 7. 住宿資訊
+// ===================================
+
+const hotels = [
+
+{
+name:"Smile Hotel Kanazawa Nishiguchi Ekimae（待核對訂房名稱）",
+dates:"11/5–11/7",
+address:"3 Chome-2-37 Hirooka, Kanazawa, Ishikawa 920-0031",
+image:"https://images.unsplash.com/photo-1566073771259-6a8506099945?w=900",
+desc:"目前依「Smile Hotel 金澤西口」搜尋結果暫列，請核對訂房確認信是否為此分店。",
+url:"https://www.google.com/maps/search/?api=1&query=Smile+Hotel+Kanazawa+Nishiguchi+Ekimae"
+},
+
+{
+{
+  name:"Toyoko Inn 富山站新幹線口2",
+  dates:"11/8–11/9、11/11",
+  address:"富山市桜町1-4-1",
+  image:"https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=900",
+  desc:"入住富山站新幹線口2，方便搭乘北陸新幹線及市區交通。",
+  url:"https://www.toyoko-inn.com/search/detail/00004/"
+}
+},
+
+{
+name:"UNAZUKI YAMANOHA（宇奈月溫泉）",
+dates:"11/10",
+address:"352-7 Unazukionsen, Kurobe, Toyama 938-0282",
+image:"https://images.unsplash.com/photo-1540541338287-41700207dee6?w=900",
+desc:"宇奈月溫泉區旅館；可查詢旅館接駁與入住資訊。",
+url:"https://www.google.com/maps/search/?api=1&query=UNAZUKI+YAMANOHA"
+}
+
+];
+
+document.getElementById("hotels").innerHTML =
+  hotels.map(h => `
+    <article class="hotel">
+
+      <img loading="lazy"
+        src="${h.image}"
+        alt="${h.name}">
+
+      <div>
+        <span class="pill">${h.dates}</span>
+
+        <h3>${h.name}</h3>
+
+        <p>${h.desc}</p>
+
+        <p><b>地址：</b>${h.address}</p>
+
+        <div class="links">
+          <a target="_blank" href="${h.url}">
+            飯店／官方資訊 ↗
+          </a>
+
+          <a target="_blank" href="${maps(h.name)}">
+            Google Maps ↗
+          </a>
+        </div>
+      </div>
+
+    </article>
+  `).join("");
+
+// ===================================
+// 8. 啟動網站
+// ===================================
+
+renderDays();
 render();
 
 </script>
-
 </body>
 </html>
